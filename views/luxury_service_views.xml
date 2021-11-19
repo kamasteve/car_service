@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="luxury_service_action" model="ir.actions.act_window">
+        <field name="name">Luxury Services</field>
+	<field name="res_model">luxury.service</field>
+	<field name="view_mode">tree,form</field>
+	<field name="help" type="xml">
+		<p class="o_view_nocontent_smiling_face">
+		        Add Services
+		</p><p>
+			Manage Services
+	        </p>
+       </field>
+    </record>
+    <record id="luxury_service_tree_view" model="ir.ui.view">
+	    <field name="name">luxury.service.tree</field>
+            <field name="model">luxury.service</field>
+            <field name="arch" type="xml">
+                <tree string="Services">
+			<field name="name" string="Name"/>
+			<field name="service_type" string="Service Type"/>
+			<field name="rate"/>
+			<field name="vehicles"/>
+			<field name="description" widget="html"/>
+		</tree>
+	    </field>
+    </record>
+</odoo>

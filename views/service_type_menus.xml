@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+	<menuitem id="car_service_menu_root" name="Car Service" web_icon="car_service,static/img/icon.png" sequence="0">
+         <menuitem id="car_service_first_level_menu" name="Services">
+              <menuitem id="car_service_model_menu_action" action="service_type_action"/>
+	      <menuitem id="car_vehicle_model_menu_action" action="service_vehicle_action"/>
+              <menuitem id="car_vehicle_model_menu_action" action="luxury_service_action"/>
+              <menuitem id="car_booking_address__model_menu_action" action="car_booking_address_action"/>
+	 </menuitem>
+         <menuitem id="car_booking_model_menu_action" action="car_booking_action"/>
+    </menuitem>
+</odoo>

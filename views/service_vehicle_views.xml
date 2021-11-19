@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="service_vehicle_action" model="ir.actions.act_window">
+        <field name="name">Vehicle</field>
+	<field name="res_model">service.vehicle</field>
+	<field name="view_mode">tree,form</field>
+	<field name="help" type="xml">
+		<p class="o_view_nocontent_smiling_face">
+		        Add New Vehicle
+		</p><p>
+			Manage number of seat available
+	        </p>
+       </field>
+    </record>
+    <record id="service_vehicle_tree_view" model="ir.ui.view">
+	    <field name="name">service.vehicle.tree</field>
+            <field name="model">service.vehicle</field>
+            <field name="arch" type="xml">
+                <tree string="Vehicles">
+			<field name="car_model" string="Model Name"/>
+			<field name="total_seat" string="Seat Availability"/>
+			<field name="image" widget="image"/>
+		</tree>
+	    </field>
+    </record>
+    <record id="service_vehicle_form_view" model="ir.ui.view">
+	    <field name="name">New Vehicle</field>
+            <field name="model">service.vehicle</field>
+            <field name="arch" type="xml">
+		    <form string="Vehicle">
+			    <sheet>
+				    <group>
+                                        <group>
+						<field name="car_model" />
+					</group>
+                                        <group>
+						<field name="total_seat" string="Seat Available" />
+					</group>
+                                        <notebook>
+						<page string="Gallery">
+							<field name="image" widget="image"/>
+						</page>
+					</notebook>
+				    </group>
+			    </sheet>
+		    </form>
+	    </field>
+    </record>
+
+</odoo>

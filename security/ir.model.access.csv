@@ -1,0 +1,6 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_service_type,access_service_type,model_service_type,base.group_user,1,1,1,1
+access_service_vehicle,access_service_vehicle,model_service_vehicle,base.group_user,1,1,1,1
+access_luxury_service,access_luxury_service,model_luxury_service,base.group_user,1,1,1,1
+access_car_booking_address,access_car_booking_address,model_car_booking_address,base.group_user,1,1,1,1
+access_car_booking,access_car_booking,model_car_booking,base.group_user,1,1,1,1

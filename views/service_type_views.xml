@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="service_type_action" model="ir.actions.act_window">
+        <field name="name">Service Type</field>
+	<field name="res_model">service.type</field>
+	<field name="view_mode">tree,form</field>
+	<field name="help" type="xml">
+		<p class="o_view_nocontent_smiling_face">
+			Define a new Service Type
+		</p><p>
+			Define Hourly or Kilometer Service
+	        </p>
+       </field>
+    </record>
+</odoo>

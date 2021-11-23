@@ -7,10 +7,10 @@
  'application' : True,
  'data': ['security/ir.model.access.csv',
           'views/service_type_views.xml',
-          'views/service_type_menus.xml',
           'views/service_vehicle_views.xml',
           'views/luxury_service_views.xml',
           'views/car_booking_views.xml',
+		  'views/online_booking.xml',
+          'views/service_type_menus.xml',
           ],
- 
 }

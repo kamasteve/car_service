@@ -87,13 +87,12 @@
 		<field name="model">car.booking</field>
 		<field name="arch" type="xml">
 			<tree string="Bookings">
-				<field name="luxury_service_id" string="Service Name"/>
-				<field name="booking_datetime" string="Booking Date"/>
-				<field name="origin" string="Starting Point"/>
-				<field name="destination" string="Destination Point"/>
-				<field name="total_distance" string="Total Distance"/>
-				<field name="passengers" string="Total Passenger"/>
-				<field name="luggage" string="Number of Lugage"/>
+				<field name="sellist1" string="Service Name"/>
+				<field name="from_date" string="Journey Date"/>
+				<field name="from_time"  />
+				<field name="cars"/>
+				<field name="txtSource" string="Passengers"/>
+				<field name="passengers" string="Luggage Count"/>
 			</tree>
 		</field>
 	</record>
@@ -105,12 +104,12 @@
 				<sheet>
 					<group>
 						<group>
-							<field name="luxury_service_id" string="Service Name"/>
-							<field name="booking_datetime" string="Journey Date"/>
-							<field name="origin"  />
-							<field name="destination"  />
-							<field name="passengers" string="Passengers"/>
-							<field name="luggage" string="Luggage Count"/>
+							<field name="sellist1" string="Service Name"/>
+							<field name="from_date" string="Journey Date"/>
+							<field name="from_time"  />
+							<field name="cars"/>
+							<field name="txtSource" string="Passengers"/>
+							<field name="passengers" string="Luggage Count"/>
 						</group>
 					</group>
 				</sheet>

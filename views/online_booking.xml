@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!--  <record id="menu_car_booking_form" model="website.menu">
+        <field name="name">Online Booking</field>
+        <field name="url">/shop/new-booking</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record> -->
+    <template id="support_assets_editor" inherit_id="website.assets_editor" name="Website Support Editor">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        </xpath>
+    </template>
+  <template id="book_car_online" name="Online Booking">
+    <t t-call="website.layout">
+   <style>
+/* -- quantity box -- */
+
+.quantity {
+display: inline-block; }
+
+.quantity .input-text.qty {
+width: 35px;
+height: 39px;
+padding: 0 5px;
+text-align: center;
+background-color: transparent;
+border: 1px solid #efefef;
+}
+
+.quantity.buttons_added {
+text-align: left;
+position: relative;
+white-space: nowrap;
+vertical-align: top; }
+
+.quantity.buttons_added input {
+display: inline-block;
+margin: 0;
+vertical-align: top;
+box-shadow: none;
+}
+
+.quantity.buttons_added .minus,
+.quantity.buttons_added .plus {
+padding: 7px 10px 8px;
+height: 41px;
+background-color: #cccccc;
+border: 1px solid #efefef;
+cursor:pointer;}
+
+.quantity.buttons_added .minus {
+border-right: 0; }
+
+.quantity.buttons_added .plus {
+border-left: 0; }
+
+.quantity.buttons_added .minus:hover,
+.quantity.buttons_added .plus:hover {
+background: #eeeeee; }
+
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+-moz-appearance: none;
+margin: 0; }
+
+.quantity.buttons_added .minus:focus,
+.quantity.buttons_added .plus:focus {
+outline: none; }
+
+
+   </style>
+   <div id="wrap" class="oe_structure oe_empty">
+
+
+   <section>
+   <div class="container">
+     <div class="row">
+       <form action="/shop/book/car" method="POST" class="form-horizontal mt32" enctype="multipart/form-data">
+
+       <div class="col o_colored_level">
+         <div class="form-group"><span class="fa fa-hand-o-right"/>&amp;nbsp; &amp;nbsp;Step 1 :&amp;nbsp; Make A Reservation<br/><br/><label for="sel1" title="">Select Service Type:
+               </label><select class="form-control" id="sel1" name="sellist1"><option selected="selected" title="">Corporate
+                 </option><option title="">Parties and Events
+                 </option><option title="">Airport Transfer
+                 </option><option title="">Private Jet Transfer
+                 </option><option title="">Celebrity Chauffeur
+                 </option><option title="">Cruise Ship Transfer
+                 </option><option title="">Weddings
+                 </option><option title="">Point to Point
+                 </option><option title="">Sightseeing
+                 </option><option title="">Tour Groups
+                 </option><option title="">Modelling And Product Launch Photography
+
+             </option></select></div>
+         <div class="form-group">
+           <label for="from_date" title="">
+             <b>Pick-Up Date:</b>
+           </label>
+           <input class="form-control" type="datetime-local" id="from_date" Name="from_date" title=""/>
+           <label for="from_time" title="">
+             <b>Pick-Up Time:</b>
+           </label>
+           <input class="form-control" type="datetime-local" id="from_time" name="from_time" title=""/>
+         </div>
+         <div class="form-row form-group">
+           <div class="col">
+             <label for="txtSource" title="">
+               <b>Origin:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="txtSource" name="txtSource"  value="" placeholder="Pick-up address" autocomplete="off" title=""/>
+           </div>
+         </div>
+         <div class="form-row form-group">
+           <div class="col">
+             <label for="txtDestination" title="">
+               <b>Destination:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="txtDestination" name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
+           </div>
+         </div>
+             <div t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
+                 <label class="control-label" for="priority">Select Vihecle</label>
+                 <select class="form-control" name="cars" id="cars">
+                     <t t-foreach="cars" t-as="car">
+                         <option t-attf-value="#{car.id}"><t t-esc="car.name"/></option>
+                     </t>
+                 </select>
+             </div>
+             <script>
+
+                 $(document).ready(function() {
+
+                     update_sub_categories()
+
+                     $("#cars").change(function() {
+                         update_sub_categories()
+                     });
+
+                     function update_sub_categories() {
+                     var time = ("#time");
+
+                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),from_date: $("#from_date").val()},success: function(result){
+                             $("#subcategoy_container").html(result);
+
+                         }});
+                     }
+
+                     });
+             </script>
+
+      <!--
+       <div class="form-row form-group">
+           <div class="col">
+             <label for="waypoints" title="">
+               <b>Waypoints:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="waypoints" value="Sydney NSW, Australia" placeholder="Enter a query" autocomplete="off" title=""/>
+           </div>
+         </div>
+       -->
+       <div id="subcategoy_container">
+
+       </div>
+         <div class="input_fields_wrap">
+           <a href="#" class="add_field_button"><span class="fa fa-plus"/> Add Route Stops And Waiting Time</a>
+
+         </div><p />
+        <div class="form-group">
+         <div class="input-group mb-6">
+           <div class="input-group-prepend">
+             <span class="input-group-text"><span class="fa fa-user-o"/>&amp;nbsp; Passengers Count&amp;nbsp; &amp;nbsp;&amp;nbsp;</span>
+             <div class="quantity buttons_added">
+               <input type="button" value="-" class="minus" title=""/>
+               <input type="text" step="1" min="0" max="" name="quantity" value="0" title="" class="input-text qty text" size="4"/>
+               <input type="button" value="+" class="plus" title=""/>
+             </div>
+           </div>
+         </div>
+         <div class="input-group mb-6">
+           <div class="input-group-prepend">
+             <span class="input-group-text"><span class="fa fa-suitcase" data-original-title="" title="" aria-describedby="tooltip941314"/>&amp;nbsp; Number of Luggage</span>
+             <div class="quantity buttons_added">
+               <input type="button" value="-" class="minus" title=""/>
+               <input type="text" step="1" min="0" max="" name="quantity" value="0" title="" class="input-text qty text" size="4"/>
+               <input type="button" value="+" class="plus" title=""/>
+             </div>
+           </div>
+         </div>
+         <input type="button" value="Get Route" onclick="GetRoute()" title=""/>
+         </div>
+       </div>
+       <div class="col">
+         <div id="dvDistance"/>
+         <div id="dvMap" style="width: 400px; height: 200px"> </div>
+         <div id="dvPanel" style="width: 400px; height: 200px"> </div>
+         <div/>
+       </div>
+       <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+     <div class="row">
+       <div class="form-group">
+           <button class="btn btn-primary btn-lg">Submit Ticket</button>
+       </div>
+     </div>
+ </form>
+ </div>
+ </div>
+   </section>
+
+   </div>
+ </t>
+
+</template>
+<template id="booking_success" name="Booking Successfull">
+    <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="text-center">Thank You</h1>
+                            <h3 class="text-muted text-center">Thank you for your booking</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </t>
+</template>
+
+</odoo>

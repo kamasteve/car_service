@@ -39,6 +39,11 @@ class CarBooking(models.Model):
     total_time = fields.Float()
     passengers = fields.Integer(default=1)
     luggage = fields.Integer(default=0)
+    sellist1  = fields.Char("Booking Type")
+    from_date = fields.Datetime("From Date Time")
+    from_time = fields.Datetime("To Date")
+    cars = fields.Many2one("product.template","Car Enganged")
+    txtSource = fields.Char("Source Location")
     
     
 

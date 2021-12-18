@@ -17,7 +17,8 @@
        <form action="/shop/book/car" method="POST" class="form-horizontal mt32" enctype="multipart/form-data">
 
        <div class="col o_colored_level">
-         <div class="form-group"><span class="fa fa-hand-o-right"/>&amp;nbsp; &amp;nbsp;Step 1 :&amp;nbsp; Make A Reservation<br/><br/><label for="sel1" title="">Select Service Type:
+         <div class="form-group"><span class="fa fa-hand-o-right"/>
+         <label for="sel1" title="">Select Service Type:
                </label><select class="form-control" id="sel1" name="sellist1"><option selected="selected" title="">Corporate
                  </option><option title="">Parties and Events
                  </option><option title="">Airport Transfer
@@ -35,11 +36,7 @@
            <label for="from_date" title="">
              <b>Pick-Up Date:</b>
            </label>
-           <input class="form-control" type="datetime-local" id="from_date" Name="from_date" title=""/>
-           <label for="from_time" title="">
-             <b>Pick-Up Time:</b>
-           </label>
-           <input class="form-control" type="datetime-local" id="from_time" name="from_time" title=""/>
+           <input class="form-control" type="datetime-local" id="from_date" Name="from_date" title="" required="True"/>
          </div>
          <div class="form-row form-group">
            <div class="col">
@@ -58,13 +55,19 @@
              <input class="form-control pac-target-input" type="text" id="input-location-end" onchange="locationCheck"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
            </div>
          </div>
-             <div t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
+             <div id="available_cars" t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
                  <label class="control-label" for="priority">Select Vihecle</label>
                  <select class="form-control" name="cars" id="cars">
                      <t t-foreach="cars" t-as="car">
                          <option t-attf-value="#{car.id}"><t t-esc="car.name"/></option>
                      </t>
                  </select>
+             </div>
+             <div class="imageHere" align="center" id="seleced_image">
+               <t t-foreach="image" t-as="a">
+                 <t t-set="abcd" t-value="a.image" />
+                 <t t-esc="abcd"/>
+               </t>
              </div>
              <script>
 
@@ -74,20 +77,31 @@
 
                      $("#cars").change(function() {
                          update_sub_categories()
+
+                     });
+                     $("#from_date").change(function() {
+                         update_sub_categories()
                      });
 
                      function update_sub_categories() {
                      var time = ("#time");
 
                          $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),from_date: $("#from_date").val()},success: function(result){
+                            var x = document.getElementById("available_cars");
+                            var image = $("#cars").val();
+                            // x.style.display = "none";
                              $("#subcategoy_container").html(result);
+                             if (result){
+                                alert("Vihecle booked for this time, kindly Select an alternative vihecle or change the date");
+                                $('[name="from_date"]').val('');
+
+                             }
 
                          }});
                      }
 
                      });
              </script>
-
       <!--
        <div class="form-row form-group">
            <div class="col">

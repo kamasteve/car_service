@@ -5,7 +5,6 @@ from odoo.http import request
 import datetime
 from werkzeug.exceptions import NotFound
 
-
 class Admission(http.Controller):
     @http.route(['/shop/new-booking',], type='http', auth="public", website=True)
     def op_admission (self, **kw):
@@ -22,18 +21,20 @@ class Admission(http.Controller):
             values[field_name] = field_value
             print(values[field_name])
         from_date1 = values['from_date']
-        from_time1 = values['from_time']
+        from_time1 = values['from_date']
+        cars = int(values['cars'])
+        print(cars)
         return_string = ""
         from_date = datetime.datetime.strptime(from_date1, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
         from_time = datetime.datetime.strptime(from_time1, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
         if from_time < from_date:
             return_string = "The end date cannot be smaller that the start date"
-        check_booking = request.env['car.booking'].sudo().search([('from_date', '>=', from_date),('from_time', '<=', from_time)])
+        check_booking = request.env['car.booking'].sudo().search([('from_date', '=', from_date),('cars','=', cars)]).id
         print(check_booking)
-        if check_booking:
+        if  check_booking:
            alternative = request.env['product.template'].sudo().search([('id', '=', values['cars'])]).alternative_products
            if alternative:
-              return_string += "<img t-att-src='data:image/png;base64,%s' % to_text(alternative.image_medium)/>\n"
+              return_string += "<img t-att-src='data:image/png;base64,%s' % to_text(alternative.image_1920)/>\n"
               return_string += "<div class=\"form-group\">\n"
               return_string += "  <label class=\"control-label\" for=\"subcategory\">Alternative Cars</label>\n"
               return_string += "  <select class=\"form-control\" id=\"cars\" name=\"cars\">\n"
@@ -53,7 +54,7 @@ class Admission(http.Controller):
              values[field_name] = field_value
          sellist1 = values['sellist1']
          from_date1 = values['from_date']
-         from_time1 = values['from_time']
+         from_time1 = values['from_date']
          txtSource = values['txtSource']
          cars = values['cars']
          quantity = values['quantity']

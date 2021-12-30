@@ -57,7 +57,11 @@ class Admission(http.Controller):
          from_date1 = values['from_date']
          from_time1 = values['from_date']
          txtSource = values['txtSource']
-         duration = int(values['input-duration'])
+         duration1 = values['input-duration']
+         if duration1:
+             duration = int(duration1)
+         else:
+             duration=0
          cars = values['cars']
          quantity = values['quantity']
          from_date= datetime.datetime.strptime(from_date1, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')

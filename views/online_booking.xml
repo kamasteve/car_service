@@ -9,9 +9,8 @@
     </record> -->
   <template id="book_car_online" name="Online Booking">
     <t t-call="website.layout">
-
-
-   <div class="col o_colored_level">
+      <div class="oe_structure">
+          <div class="container">
      <div class="row">
       <div class="col-md-6">
        <form action="/shop/book/car" method="POST" class="form-horizontal mt32" enctype="multipart/form-data">
@@ -171,6 +170,7 @@
                          </div>
 
    </div>
+ </div>
  </div>
  </t>
 

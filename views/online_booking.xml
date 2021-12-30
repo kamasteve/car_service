@@ -93,7 +93,7 @@
                      function update_sub_categories() {
                      var time = ("#time");
 
-                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input-duration:$("#input-duration").val(),from_date: $("#from_date").val()},success: function(result){
+                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input_duration:$("#input-duration").val(),from_date: $("#from_date").val()},success: function(result){
                             var x = document.getElementById("available_cars");
                             var image = $("#cars").val();
                             // x.style.display = "none";
@@ -110,7 +110,7 @@
                      });
              </script>
 
-        
+
 
       <!--
        <div class="form-row form-group">

@@ -47,20 +47,21 @@
            </div>
          </div>
          <div class="form-row form-group">
-                                <div class="col">
-                                    <label for="input-distance" title="">
-                                        <b>Distance:</b>
-                                    </label>
-                                    <div id="dvDistance" class="form-control pac-target-input" name="input-distance" /></div>
-                            </div>
-
-                            <div class="form-row form-group">
-                                <div class="col">
-                                    <label for="input-distance" title="">
-                                        <b>Duration :</b>
-                                    </label>
-                                    <div id="dvDuration" class="form-control pac-target-input" name="input-duration" /></div>
-                            </div>
+           <div class="col">
+             <label for="input-distance" title="">
+               <b>Distance:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="input-distance"  name="input-distance" value="" placeholder="Distance" autocomplete="off" title=""/>
+           </div>
+         </div>
+         <div class="form-row form-group">
+           <div class="col">
+             <label for="txtDestination" title="">
+               <b>Duration:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="input-duration"   name="input-duration" value="" placeholder="Duration" autocomplete="off" title=""/>
+           </div>
+         </div>
              <div id="available_cars" t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
                  <label class="control-label" for="priority">Select Vihecle</label>
                  <select class="form-control" name="cars" id="cars">
@@ -92,7 +93,7 @@
                      function update_sub_categories() {
                      var time = ("#time");
 
-                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input_duration:$("#input-duration").val(),from_date: $("#from_date").val()},success: function(result){
+                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input-duration:$("#input-duration").val(),from_date: $("#from_date").val()},success: function(result){
                             var x = document.getElementById("available_cars");
                             var image = $("#cars").val();
                             // x.style.display = "none";
@@ -191,5 +192,4 @@
         </div>
     </t>
 </template>
-
 </odoo>

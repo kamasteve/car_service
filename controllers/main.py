@@ -80,4 +80,15 @@ class Admission(http.Controller):
                      WHERE id = %s
                  """
          request.env.cr.execute(query, [tuple(cars)])
-         return http.request.render('car_service.booking_success', {})
+         product_id = cars
+         add_qty = 0
+         set_qty = 0
+         #product.update({'lst_price': post['Overdue']})
+         # product.lst_price = post['amount']
+         request.website.sale_get_order(force_create=1)._cart_update(
+             product_id=int(product_id),
+             add_qty=float(add_qty),
+             set_qty=float(set_qty),
+         )
+         return request.redirect("/shop/cart")
+         #return http.request.render('car_service.booking_success', {})

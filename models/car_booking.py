@@ -1,5 +1,5 @@
 # _*_ Character coding UTF-8 _*_
-from odoo import models, fields
+from odoo import api,models,fields
 
 
 class CarBookingAddress(models.Model):
@@ -39,11 +39,20 @@ class CarBooking(models.Model):
     total_time = fields.Float()
     passengers = fields.Integer(default=1)
     luggage = fields.Integer(default=0)
-    sellist1  = fields.Char("Booking Type")
+    sellist1 = fields.Many2one("luxury.service", "Luxury Type")
+    status = fields.Char("Booking Status", default="Available")
     from_date = fields.Datetime("From Date Time")
     from_time = fields.Datetime("To Date")
-    cars = fields.Many2one("product.template","Car Enganged")
+    cars = fields.Many2one("product.template","Car Enganged",domain="[('booking_status', '=', 'Available')]")
     txtSource = fields.Char("Source Location")
+    @api.model
+    def create(self, values):
+        ## Definition
+        query ="UPDATE product_template SET booking_status ='Booked' WHERE id =%s"
+        product=values['cars']
+        vars = (product,)
+        self.env.cr.execute(query, vars)
+        return super(models.Model, self).create(values)
     
     
 

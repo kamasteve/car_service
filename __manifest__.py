@@ -12,5 +12,6 @@
           'views/car_booking_views.xml',
 		  'views/online_booking.xml',
           'views/service_type_menus.xml',
+          'views/product_template.xml',
           ],
 }

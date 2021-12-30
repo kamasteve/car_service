@@ -19,19 +19,11 @@
        <div class="col o_colored_level">
          <div class="form-group"><span class="fa fa-hand-o-right"/>
          <label for="sel1" title="">Select Service Type:
-               </label><select class="form-control" id="sel1" name="sellist1"><option selected="selected" title="">Corporate
-                 </option><option title="">Parties and Events
-                 </option><option title="">Airport Transfer
-                 </option><option title="">Private Jet Transfer
-                 </option><option title="">Celebrity Chauffeur
-                 </option><option title="">Cruise Ship Transfer
-                 </option><option title="">Weddings
-                 </option><option title="">Point to Point
-                 </option><option title="">Sightseeing
-                 </option><option title="">Tour Groups
-                 </option><option title="">Modelling And Product Launch Photography
-
-             </option></select></div>
+               </label><select class="form-control" id="sel1" name="sellist1">
+               <t t-foreach="luxury_service" t-as="service">
+                   <option t-attf-value="#{service.id}"><t t-esc="service.name"/></option>
+               </t>
+               </select></div>
          <div class="form-group">
            <label for="from_date" title="">
              <b>Pick-Up Date:</b>
@@ -53,6 +45,22 @@
                <b>Destination:</b>
              </label>
              <input class="form-control pac-target-input" type="text" id="input-location-end" onchange="locationCheck"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
+           </div>
+         </div>
+         <div class="form-row form-group">
+           <div class="col">
+             <label for="input-distance" title="">
+               <b>Distance:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="input-distance"  name="input-distance" value="" placeholder="Distance" autocomplete="off" title=""/>
+           </div>
+         </div>
+         <div class="form-row form-group">
+           <div class="col">
+             <label for="txtDestination" title="">
+               <b>Duration:</b>
+             </label>
+             <input class="form-control pac-target-input" type="text" id="input-duration"   name="input-duration" value="" placeholder="Duration" autocomplete="off" title=""/>
            </div>
          </div>
              <div id="available_cars" t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
@@ -86,7 +94,7 @@
                      function update_sub_categories() {
                      var time = ("#time");
 
-                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),from_date: $("#from_date").val()},success: function(result){
+                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input-duration:$("#input-duration").val(),from_date: $("#from_date").val()},success: function(result){
                             var x = document.getElementById("available_cars");
                             var image = $("#cars").val();
                             // x.style.display = "none";
@@ -140,20 +148,19 @@
              </div>
            </div>
          </div>
-         <input type="button" value="Get Route" onclick="GetRoute()" title=""/>
+
          </div>
        </div>
        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
      <div class="row">
        <div class="form-group">
-           <button class="btn btn-primary btn-lg">Submit Ticket</button>
+           <button class="btn btn-primary btn-lg">Book Your Fleet</button>
        </div>
      </div>
  </form>
  </div>
 <div class="col-md-6">
-<div  id="map" name="map" >
-
+<div  id="map">
 </div>
 </div>
  </div>

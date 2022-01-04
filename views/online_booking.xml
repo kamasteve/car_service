@@ -62,6 +62,22 @@
              <input class="form-control pac-target-input" type="text" id="input-duration"   name="input-duration" value="" placeholder="Duration" autocomplete="off" title=""/>
            </div>
          </div>
+         <div class="row">
+                                <div class="col">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <span class="fa fa-map-marker"></span>/
+
+                                            <span class="fa fa-clock-o"></span>&amp;nbsp; Waypoint
+
+                                        </span>
+                                        <div  class="input-group-text">
+                                            <input class="form-control pac-target-input" oninput="locationCheck();" onkeypress="locationCheck();" onkeydown="locationCheck();" onkeyup="locationCheck();" onchange="locationCheck();" onFocus="locationCheck();" id="input-location-stop" type="text" name="stop" style="width: 70%;" />
+                                            <input type="number" oninput="locationCheck();" onchange="locationCheck();" name="hours" id="input-location-time-hours" class="form-control ftn ftn4" placeholder="hrs" style="width: 30%;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
              <div id="available_cars" t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
                  <label class="control-label" for="priority">Select Vihecle</label>
                  <select class="form-control" name="cars" id="cars">

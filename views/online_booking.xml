@@ -34,7 +34,7 @@
              <label for="txtSource" title="">
                <b>Origin:</b>
              </label>
-             <input class="form-control pac-target-input" type="text" id="input-location-start" onchange="locationCheck"  name="txtSource"  value="" placeholder="Pick-up address" autocomplete="off" title=""/>
+             <input class="form-control pac-target-input" type="text" id="input-location-start" oninput="locationCheck();" onFocus="locationCheck();" onkeypress="locationCheck();" onkeydown="locationCheck();" onkeyup="locationCheck();" onchange="locationCheck();" name="txtSource"  value="" placeholder="Pick-up address" autocomplete="off" title=""/>
            </div>
          </div>
 
@@ -43,7 +43,7 @@
              <label for="txtDestination" title="">
                <b>Destination:</b>
              </label>
-             <input class="form-control pac-target-input" type="text" id="input-location-end" onchange="locationCheck"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
+             <input class="form-control pac-target-input" type="text" id="input-location-end" oninput="locationCheck();" onFocus="locationCheck();" onkeypress="locationCheck();" onkeydown="locationCheck();" onkeyup="locationCheck();" onchange="locationCheck();"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
            </div>
          </div>
          <div class="form-row form-group">
@@ -93,7 +93,7 @@
                      function update_sub_categories() {
                      var time = ("#time");
 
-                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input-duration:$("#input-duration").val(),from_date: $("#from_date").val()},success: function(result){
+                         $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input_duration:$("#input_duration").val(),from_date: $("#from_date").val()},success: function(result){
                             var x = document.getElementById("available_cars");
                             var image = $("#cars").val();
                             // x.style.display = "none";

@@ -23,7 +23,7 @@ class Admission(http.Controller):
             values[field_name] = field_value
             print(values[field_name])
         from_date1 = values['from_date']
-        duration = 46
+        duration = values['input_duration']
         from_time1 = values['from_date'] + timedelta(minutes=duration) + timedelta(minutes=30)
         cars = int(values['cars'])
         print(cars)
@@ -57,9 +57,9 @@ class Admission(http.Controller):
          from_date1 = values['from_date']
          from_time1 = values['from_date']
          txtSource = values['txtSource']
-         duration1 = 46
+         duration1 = values['input_duration']
          if duration1:
-             duration = int(duration1)
+             duration = int(duration1/60)
          else:
              duration=0
          cars = values['cars']

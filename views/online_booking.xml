@@ -46,27 +46,13 @@
              <input class="form-control pac-target-input" type="text" id="input-location-end" oninput="locationCheck();" onFocus="locationCheck();" onkeypress="locationCheck();" onkeydown="locationCheck();" onkeyup="locationCheck();" onchange="locationCheck();"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
            </div>
          </div>
-         <div class="form-row form-group">
-                               <div class="col">
-                                   <label for="input-distance" title="">
-                                       <b>Distance:</b>
-                                   </label>
-                                   <div id="dvDistance" class="form-control pac-target-input" name="input-distance" /></div>
-                           </div>
-
-                           <div class="form-row form-group">
-                               <div class="col">
-                                   <label for="input-distance" title="">
-                                       <b>Duration :</b>
-                                   </label>
-                                   <div id="dvDuration" class="form-control pac-target-input" name="input-duration" /></div>
-                           </div>
+        
          <div class="form-row form-group">
            <div class="col">
              <label for="input-distance" title="">
                <b>Distance:</b>
              </label>
-             <input class="form-control pac-target-input" type="hidden" id="input-distance"  name="input-distance" value="" placeholder="Distance" autocomplete="off" title=""/>
+             <input class="form-control pac-target-input" type="text" id="input_distance"  name="input_distance" value="" placeholder="Distance" autocomplete="off" title=""/>
            </div>
          </div>
          <div class="form-row form-group">
@@ -74,7 +60,7 @@
              <label for="txtDestination" title="">
                <b>Duration:</b>
              </label>
-             <input class="form-control pac-target-input" type="hidden" id="input-duration"   name="input-duration" value="" placeholder="Duration" autocomplete="off" title=""/>
+             <input class="form-control pac-target-input" type="text" id="input_duration"   name="input_duration" value="" placeholder="Duration" autocomplete="off" title=""/>
            </div>
          </div>
          <div class="row">
@@ -101,6 +87,7 @@
                      </t>
                  </select>
              </div>
+             <div class="error" id="error"></div>
              <div class="imageHere" align="center" id="seleced_image">
                <t t-foreach="image" t-as="a">
                  <t t-set="abcd" t-value="a.image" />
@@ -130,8 +117,8 @@
                             // x.style.display = "none";
                              $("#subcategoy_container").html(result);
                              if (result){
-                                alert("Vihecle booked for this time, kindly Select an alternative vihecle or change the date");
-                                $('[name="from_date"]').val('');
+                                document.getElementById("error").innerHTML = 'Vihecle booked for this time, kindly Select an alternative vihecle or change the date';
+                                //$('[name="from_date"]').val('');
 
                              }
 
@@ -181,7 +168,6 @@
              </div>
            </div>
          </div>
-
          </div>
        </div>
        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>

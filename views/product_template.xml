@@ -10,6 +10,7 @@
          <xpath expr="//field[@name='barcode']" position="after">
                 <field name="alternative_products" widget="many2many_tags"/>
                 <field name="booking_status"/>
+                
 
                  </xpath>
        </field>

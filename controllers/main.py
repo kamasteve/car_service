@@ -11,7 +11,7 @@ class Admission(http.Controller):
     def op_admission (self, **kw):
         #return "hello"
         country = http.request.env['res.country'].sudo().search([])
-        cars = http.request.env['product.template'].sudo().search([('booking_status','=','Available')])
+        cars = http.request.env['product.template'].sudo().search([])
         luxury_service = http.request.env['luxury.service'].sudo().search([])
         print(cars)
         return request.render("car_service.book_car_online", {'country': country,'cars':cars,'luxury_service':luxury_service})
@@ -23,7 +23,7 @@ class Admission(http.Controller):
             values[field_name] = field_value
             print(values[field_name])
         from_date1 = values['from_date']
-        duration = values['input_duration']
+        duration = int(values['input_duration'])
         from_time1 = values['from_date'] + timedelta(minutes=duration) + timedelta(minutes=30)
         cars = int(values['cars'])
         print(cars)
@@ -59,7 +59,7 @@ class Admission(http.Controller):
          txtSource = values['txtSource']
          duration1 = values['input_duration']
          if duration1:
-             duration = int(duration1/60)
+             duration = int(duration1)/60
          else:
              duration=0
          cars = values['cars']

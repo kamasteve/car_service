@@ -13,7 +13,6 @@ class Admission(http.Controller):
         country = http.request.env['res.country'].sudo().search([])
         cars = http.request.env['product.template'].sudo().search([])
         luxury_service = http.request.env['luxury.service'].sudo().search([])
-        print(cars)
         return request.render("car_service.book_car_online", {'country': country,'cars':cars,'luxury_service':luxury_service})
 
     @http.route('/shop/products/validate', type='http', auth="public", website=True)
@@ -21,18 +20,24 @@ class Admission(http.Controller):
         values = {}
         for field_name, field_value in kwargs.items():
             values[field_name] = field_value
-            print(values[field_name])
+
         from_date1 = values['from_date']
-        duration = int(values['input_duration'])
-        from_time1 = values['from_date'] + timedelta(minutes=duration) + timedelta(minutes=30)
+        duration1 = values['input_duration']
+        if duration1:
+            duration = int(duration1) / 60
+        else:
+            duration = 0
+        n2 = datetime.datetime.strptime(from_date1, '%Y-%m-%dT%H:%M')
+        from_time = n2 + timedelta(minutes=duration) + timedelta(minutes=30)
         cars = int(values['cars'])
-        print(cars)
         return_string = ""
+        #print(from_time)
         from_date = datetime.datetime.strptime(from_date1, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
-        from_time = datetime.datetime.strptime(from_time1, '%Y-%m-%dT%H:%M').strftime('%Y-%m-%d %H:%M:%S')
-        if from_time < from_date:
+        date =str(from_time)
+        from_time1 = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %H:%M:%S')
+        if from_time1 < from_date:
             return_string = "The end date cannot be smaller that the start date"
-        check_booking = request.env['car.booking'].sudo().search([('from_date', '=', from_date),('cars','=', cars)]).id
+        check_booking = request.env['car.booking'].sudo().search([('from_date', '>=', from_date),('from_date', '<=', from_time),('cars','=', cars)])
         print(check_booking)
         if  check_booking:
            alternative = request.env['product.template'].sudo().search([('id', '=', values['cars'])]).alternative_products
@@ -44,10 +49,9 @@ class Admission(http.Controller):
               for alternative in alternative:
                   return_string += "    <option value=\"" + str(
                   alternative.id) + "\">" + alternative.name + "</option>\n"
-                  return_string += "  </select>\n"
-                  return_string += "</div>\n"
+              return_string += "  </select>\n"
+              return_string += "</div>\n"
         return return_string
-    # @http.route('/rekrutacja-online/subjects/fetch', type='http', auth="public", website=True)
     @http.route('/shop/book/car', type="http", auth="public", website='user')
     def admission_submit_application(self, **kwargs):
          values = {}

@@ -4,7 +4,7 @@ from odoo import models, fields, api
 class ProductsChange(models.Model):
     _inherit = "product.template"
     _description = 'Add alternative products to product template'
-    alternative_products = fields.One2many('product.template', 'id')
+    alternative_products = fields.Many2many('product.product', 'alternative_id')
     booking_status = fields.Selection([
     ('Booked', 'Booked'),
     ('Available', 'Available'),

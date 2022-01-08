@@ -46,7 +46,8 @@
              <input class="form-control pac-target-input" type="text" id="input-location-end" oninput="locationCheck();" onFocus="locationCheck();" onkeypress="locationCheck();" onkeydown="locationCheck();" onkeyup="locationCheck();" onchange="locationCheck();"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
            </div>
          </div>
-
+         <div id='dvDistance' name='dvDistance'></div>
+         <div id='dvDuration' name='dvDuration'></div>
          <div class="form-row form-group">
            <div class="col">
              <label for="input-distance" title="">
@@ -115,15 +116,22 @@
 
                          $.ajax({url: "/shop/products/validate", data:{cars: $("#cars").val(),from_time: $("#from_time").val(),input_duration:$("#input_duration").val(),from_date: $("#from_date").val()},success: function(result){
                             var x = document.getElementById("available_cars");
+                            var y = document.getElementById("error");
+                            var z = document.getElementById("subcategoy_container");
                             var image = $("#cars").val();
                             // x.style.display = "none";
-                             $("#subcategoy_container").html(result);
                              if (result){
+                                $("#subcategoy_container").html(result);
                                 document.getElementById("error").innerHTML = '<div class="alert alert-danger"> Vihecle booked for this time, kindly Select an alternative vihecle or change the date</div>';
                                 //$('[name="from_date"]').val('');
                                 var x = document.getElementById("available_cars");
                                 x.style.display = "none";
 
+                             }
+                             else{
+                             x.style.display = "block";
+                             y.style.display = "none";
+                             z.style.display = "none";
                              }
 
                          }});

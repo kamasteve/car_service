@@ -87,7 +87,7 @@ class Admission(http.Controller):
                  """
          request.env.cr.execute(query, [tuple(cars)])
          product_id = cars
-         add_qty = 0
+         add_qty = 1
          set_qty = 0
          #product.update({'lst_price': post['Overdue']})
          # product.lst_price = post['amount']

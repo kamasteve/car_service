@@ -46,14 +46,15 @@
              <input class="form-control pac-target-input" type="text" id="input-location-end" oninput="locationCheck();" onFocus="locationCheck();" onkeypress="locationCheck();" onkeydown="locationCheck();" onkeyup="locationCheck();" onchange="locationCheck();"  name="txtDestination" value="" placeholder="Drop-off address" autocomplete="off" title=""/>
            </div>
          </div>
-         <div id='dvDistance' name='dvDistance'></div>
-         <div id='dvDuration' name='dvDuration'></div>
+
+
          <div class="form-row form-group">
            <div class="col">
              <label for="input-distance" title="">
                <b>Distance:</b>
              </label>
-             <input class="form-control pac-target-input" type="text" id="input_distance"  name="input_distance" value="" placeholder="Distance" autocomplete="off" title=""/>
+             <input class="form-control pac-target-input" type="hidden" id="input_distance"  name="input_distance" value="" placeholder="Distance" autocomplete="off" title=""/>
+             <div id='dvDistance' name='dvDistance'></div>
            </div>
          </div>
          <div class="form-row form-group">
@@ -61,7 +62,8 @@
              <label for="txtDestination" title="">
                <b>Duration:</b>
              </label>
-             <input class="form-control pac-target-input" type="text" id="input_duration"   name="input_duration" value="" placeholder="Duration" autocomplete="off" title=""/>
+             <input class="form-control pac-target-input" type="hidden" id="input_duration"   name="input_duration" value="" placeholder="Duration" autocomplete="off" title=""/>
+             <div id='dvDuration' name='dvDuration'></div>
            </div>
          </div>
          <div class="row">
@@ -130,8 +132,7 @@
                              }
                              else{
                              x.style.display = "block";
-                             y.style.display = "none";
-                             z.style.display = "none";
+                             
                              }
 
                          }});

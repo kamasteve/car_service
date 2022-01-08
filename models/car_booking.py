@@ -45,6 +45,7 @@ class CarBooking(models.Model):
     from_time = fields.Datetime("To Date")
     cars = fields.Many2one("product.template","Car Enganged",domain="[('booking_status', '=', 'Available')]")
     txtSource = fields.Char("Source Location")
+    txtDestination = fields.Char("Destination")
     @api.model
     def create(self, values):
         ## Definition

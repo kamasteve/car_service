@@ -62,6 +62,8 @@ class Admission(http.Controller):
          from_time1 = values['from_date']
          txtSource = values['txtSource']
          duration1 = values['input_duration']
+         total_distance = values['input_distance']
+         txtDestination = values['txtDestination']
          if duration1:
              duration = int(duration1)/60
          else:
@@ -73,8 +75,8 @@ class Admission(http.Controller):
          n2 = datetime.datetime.strptime(from_time1, '%Y-%m-%dT%H:%M')
          from_time = n2 + datetime.timedelta(minutes=n) + datetime.timedelta(minutes=duration)
          print(from_time)
-         dict = {'sellist1':sellist1,'from_date':from_date,'txtSource':txtSource,'status':'Booked','from_time':from_time,
-                 'cars':cars,'luggage':quantity,
+         dict = {'sellist1':sellist1,'from_date':from_date,'txtSource':txtSource,'total_time':duration,'total_distance':total_distance,'status':'Booked','from_time':from_time,
+                 'cars':cars,'luggage':quantity,'txtDestination':txtDestination
                  }
 
          results = request.env['car.booking'].sudo().create(dict)
@@ -95,4 +97,3 @@ class Admission(http.Controller):
              set_qty=float(set_qty),
          )
          return request.redirect("/shop/cart")
-         #return http.request.render('car_service.booking_success', {})

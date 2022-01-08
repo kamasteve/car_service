@@ -91,8 +91,11 @@
 				<field name="from_date" string="Journey Date"/>
 				<field name="from_time"  />
 				<field name="cars"/>
-				<field name="txtSource" string="Passengers"/>
-				<field name="passengers" string="Luggage Count"/>
+				<field name="txtSource" />
+				<field name="passengers" />
+				<field name="txtDestination"/>
+				<field name="total_distance"/>
+				<field name="total_time"/>
 			</tree>
 		</field>
 	</record>
@@ -109,6 +112,12 @@
 							<field name="from_time"  />
 							<field name="cars"/>
 							<field name="txtSource" string="Passengers"/>
+
+						</group>
+						<group>
+							<field name="txtDestination"/>
+							<field name="total_distance"/>
+							<field name="total_time"/>
 							<field name="passengers" string="Luggage Count"/>
 						</group>
 					</group>
